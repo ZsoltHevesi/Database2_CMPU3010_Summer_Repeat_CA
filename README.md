@@ -1,2 +1,0 @@
-# Database2_CMPU3010_Summer_Repeat_CA
-
