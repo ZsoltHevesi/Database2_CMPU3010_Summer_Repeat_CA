@@ -42,7 +42,7 @@ CREATE TABLE customers (
 CREATE TABLE payments (
     payment_id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customers(customer_id),
-    amount DECIMAL(10, 2),
+    payment_amount DECIMAL(10, 2),
     payment_date DATE
 );
 
@@ -73,7 +73,7 @@ INSERT INTO customers (first_name, last_name, email) VALUES
 ('Jerad', 'Beswell', 'jbeswell4@etsy.com');
 
 -- Insert sample data into payments (80)
-INSERT INTO payments (customer_id, amount, payment_date) VALUES
+INSERT INTO payments (customer_id, payment_amount, payment_date) VALUES
 (1, 45.00, '2023-01-15'),
 (1, 60.00, '2023-02-10'),
 (2, 30.00, '2023-01-20'),
