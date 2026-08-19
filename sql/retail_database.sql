@@ -87,21 +87,21 @@ INSERT INTO payments (customer_id, payment_amount, payment_date) VALUES
 (2, 19.74, '2026-03-17'),
 (1, 21.25, '2024-05-04'),
 (11, 15.22, '2025-03-04'),
-(3, 20.84, '2026-04-14'),
+(3, 120.84, '2026-04-14'),
 (4, 7.51, '2025-02-07'),
 (4, 18.15, '2024-10-21'),
 (9, 6.67, '2024-06-26'),
 (2, 13.69, '2024-06-07'),
-(8, 17.72, '2024-11-17'),
+(3, 117.72, '2024-11-17'),
 (12, 1.37, '2026-03-03'),
 (15, 2.3, '2025-10-21'),
-(7, 15.28, '2023-05-13'),
+(7, 115.28, '2023-05-13'),
 (5, 4.79, '2025-12-07'),
 (9, 20.34, '2023-04-07'),
 (14, 4.85, '2024-02-02'),
 (2, 11.96, '2025-11-10'),
 (7, 15.71, '2025-06-15'),
-(7, 19.14, '2025-09-09'),
+(7, 119.14, '2025-09-09'),
 (1, 22.6, '2025-08-11'),
 (13, 12.56, '2026-03-16'),
 (6, 16.33, '2025-11-20'),
@@ -243,3 +243,8 @@ INSERT INTO rentals (customer_id, rental_date, return_date, late_fee) VALUES
 SELECT * FROM customers;
 SELECT * FROM payments;
 SELECT * FROM rentals;
+
+-- Find customers with spending threshold of 331
+SELECT customer_id, SUM(payment_amount) AS total_spent FROM payments
+GROUP BY customer_id
+HAVING SUM(payment_amount) > 331;
