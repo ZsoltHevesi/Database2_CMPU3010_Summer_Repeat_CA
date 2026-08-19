@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS customers;
 -- Begin schema definition
 -- Table: customers
 CREATE TABLE customers (
-    customer_id SERIAL PRIMARY KEY,
+    customer_id SERIAL PRIMARY KEY NOT NULL,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     email VARCHAR(100)
@@ -40,16 +40,16 @@ CREATE TABLE customers (
 
 -- Table: payments
 CREATE TABLE payments (
-    payment_id SERIAL PRIMARY KEY,
-    customer_id INT REFERENCES customers(customer_id),
+    payment_id SERIAL PRIMARY KEY NOT NULL,
+    customer_id INT REFERENCES customers(customer_id) NOT NULL,
     payment_amount DECIMAL(10, 2),
     payment_date DATE
 );
 
 -- Table: rentals
 CREATE TABLE rentals (
-    rental_id SERIAL PRIMARY KEY,
-    customer_id INT REFERENCES customers(customer_id),
+    rental_id SERIAL PRIMARY KEY NOT NULL,
+    customer_id INT REFERENCES customers(customer_id) NOT NULL,
     rental_date DATE,
     return_date DATE,
     late_fee DECIMAL(10, 2)
