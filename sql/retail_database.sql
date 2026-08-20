@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS customers;
 -- Begin schema definition
 -- Table: customers
 CREATE TABLE customers (
-    customer_id SERIAL PRIMARY KEY NOT NULL,
+    customer_id SERIAL PRIMARY KEY,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     email VARCHAR(100)
@@ -40,7 +40,7 @@ CREATE TABLE customers (
 
 -- Table: payments
 CREATE TABLE payments (
-    payment_id SERIAL PRIMARY KEY NOT NULL,
+    payment_id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customers(customer_id) NOT NULL,
     payment_amount DECIMAL(10, 2),
     payment_date DATE
@@ -48,7 +48,7 @@ CREATE TABLE payments (
 
 -- Table: rentals
 CREATE TABLE rentals (
-    rental_id SERIAL PRIMARY KEY NOT NULL,
+    rental_id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customers(customer_id) NOT NULL,
     rental_date DATE,
     return_date DATE,
@@ -244,7 +244,8 @@ SELECT * FROM customers;
 SELECT * FROM payments;
 SELECT * FROM rentals;
 
--- Find customers with spending threshold of 331
+-- Find customers with spending threshold of 331 (standard aggregation query)
 SELECT customer_id, SUM(payment_amount) AS total_spent FROM payments
 GROUP BY customer_id
 HAVING SUM(payment_amount) > 331;
+
